@@ -5,3 +5,6 @@
 module(...,package.seeall)
 SOCKET_IP = "127.0.0.1"
 SOCKET_PORT = 11009
+
+USER_NAME = "test106"
+USER_PASSWORD = 111111
