@@ -153,7 +153,7 @@ function SocketTCP:_onConnected()
 		    	self:close()
 		    	if self.isConnected then
 		    		self:_onDisconnect()
-		    	else 
+		    	else
 		    		self:_connectFailure()
 		    	end
 		   		return
