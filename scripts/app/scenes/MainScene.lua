@@ -35,18 +35,22 @@ function MainScene:initUI()
     agree_CheckBox = loginWidget:getChild("agree_CheckBox")
     agree_CheckBox:setListener({[ccs.CheckBoxEventType.selected]   = function() isAgree = true end,
                                 [ccs.CheckBoxEventType.unselected] = function() isAgree = false end})
+    agree_CheckBox:setSelectedState(true)
 
     name_TextField = loginWidget:getChild("name_TextField")
+    name_TextField:setText(Global.USER_NAME)
     password_TextField = loginWidget:getChild("password_TextField")
+    password_TextField:setText(""..Global.USER_PASSWORD)
     confirm_TextField = loginWidget:getChild("confirm_TextField")
+    confirm_TextField:setText(""..Global.USER_PASSWORD)
 end
 
 function MainScene:onLoginBtnHandler()
     --print( loginConfirm.."  "..loginPassworld )
     loginName = name_TextField:getStringValue()
-    loginConfirm = confirm_TextField:getStringValue()
-    loginPassworld = password_TextField:getStringValue()
-    if isAgree == false then
+    loginConfirm = tonumber(confirm_TextField:getStringValue())
+    loginPassworld = tonumber(password_TextField:getStringValue())
+    --[[if isAgree == false then
         do return end
     end
     if loginName == "" then
@@ -54,8 +58,14 @@ function MainScene:onLoginBtnHandler()
     end
     if loginPassworld ~= loginConfirm then
         do return end
-    end
-    print( "login" )
+    end--]]
+    local msg = {username = loginName,password = loginPassworld,msgID = 101}
+    NetworkLogic:send_message(msg)
+    --print( "sent login msg" )
+end
+
+function MainScene:onLoginSuccess()
+    app:enterAirBattleScene()
 end
 
 

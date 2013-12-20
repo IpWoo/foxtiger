@@ -1,7 +1,8 @@
 local baseService = kode.notifier:extend{
 	name = "BaseService";
 	action = "";
-	param = {}
+	param = {};
+	--baseService:registLogin_pb()
 }
 
 function baseService:request()
