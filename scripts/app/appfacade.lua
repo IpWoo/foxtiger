@@ -9,6 +9,8 @@ Event.EVENT_START_APP = "StartApp";
 
 function appFacade:startup()
 	self:sendNotification(Event.EVENT_START_APP, {notice="startup"})
+	NetworkLogic = require("network.NetworkMgr").new(Global.SOCKET_IP, Global.SOCKET_PORT)
+    NetworkLogic:connect_server()
 	--require("app.MyApp").new():run()
 end
 
